@@ -11,10 +11,7 @@ $(document).ready(function() {
 
 
 function ActualizarTabla() {
-    console.log("Update")
     cargarTabla();
-
-    // cargarTabla();
 }
 
 function cargarTabla() {
