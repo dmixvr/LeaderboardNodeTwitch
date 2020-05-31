@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <leadboardTable/>
+    <leadboardTable  />
 
   </div>
 </template>

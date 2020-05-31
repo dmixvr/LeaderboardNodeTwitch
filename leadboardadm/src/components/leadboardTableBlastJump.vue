@@ -3,12 +3,11 @@
     :headers="headers"
     :items="puntuaciones"
     sort-by="Nick"
-    class="elevation-1 md-5"
-    
+    class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat >
-        <v-toolbar-title>Puntuaciones Aim Factory</v-toolbar-title>
+        <v-toolbar-title>Puntuaciones Blast Jump</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -93,12 +92,12 @@ import axios from 'axios'
       editedItem: {
         Nick: '',
         Puntuacion: 0,
-        Minijuego: 1,
+        Minijuego: 2,
       },
       defaultItem: {
         Nick: '',
         Puntuacion: 0,
-        Minijuego: 1,
+        Minijuego: 2,
       },
     }),
 
@@ -121,7 +120,7 @@ import axios from 'axios'
     methods: {
       initialize () {
          
-        axios.get('http://'+ip+':8083/api/leaderboard/1')
+        axios.get('http://'+IP+':8083/api/leaderboard/2')
         .then((response) =>{
             this.puntuaciones = response.data;
             console.log(response.data);
@@ -145,7 +144,7 @@ import axios from 'axios'
         const index = this.puntuaciones.indexOf(item)
         confirm('Estas seguro que quieres eliminarlo?')
 
-          axios.post('http://'+ip+':8083/api/leaderboard/delete',   this.puntuaciones[index])
+          axios.post('http://'+IP+':8083/api/leaderboard/delete',   this.puntuaciones[index])
           .then(function (response) {
             console.log(response);
            
@@ -167,7 +166,7 @@ import axios from 'axios'
       save () {
         if (this.editedIndex > -1) {
           Object.assign(this.puntuaciones[this.editedIndex], this.editedItem)
-          axios.post('http://'+ip+':8083/api/leaderboard/update', this.editedItem)
+          axios.post('http://'+IP+':8083/api/leaderboard/update', this.editedItem)
           .then(function (response) {
             console.log(response);
           })
@@ -178,7 +177,7 @@ import axios from 'axios'
 
         } else {
           this.puntuaciones.push(this.editedItem)
-          axios.post('http://'+ip+':8083/api/leaderboard/insert', this.editedItem)
+          axios.post('http://'+IP+':8083/api/leaderboard/insert', this.editedItem)
           .then(function (response) {
             console.log(response);
           })

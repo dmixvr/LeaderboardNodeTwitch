@@ -1,5 +1,5 @@
 var puntuacionesAnteriores;
-
+var minijuego = 1;
 $(document).ready(function() {
     console.log("ready!");
 
@@ -7,6 +7,16 @@ $(document).ready(function() {
     setInterval(function() {
         ActualizarTabla();
     }, 3000);
+
+    minijuego = getUrlParameter("minijuego");
+    if (minijuego == 1) {
+        $("h1").html('<svg class="ico-cup"> <use xlink:href="#cup"></use> </svg> Aim Factory');
+    } else if (minijuego == 2) {
+        $("h1").html('<svg class="ico-cup"> <use xlink:href="#cup"></use> </svg> Blast Jump');
+    } else if (minijuego == 3) {
+        $("h1").html('<svg class="ico-cup"> <use xlink:href="#cup"></use> </svg> Flappy bird');
+    }
+
 });
 
 
@@ -15,8 +25,9 @@ function ActualizarTabla() {
 }
 
 function cargarTabla() {
+
     $.ajax({
-        url: 'http://localhost:8081/api/leaderboard/1',
+        url: 'http://localhost:8083/api/leaderboard/' + minijuego,
         success: function(respuesta) {
             console.log(respuesta);
             puntuacionesAnteriores = respuesta;
@@ -50,3 +61,18 @@ function cargarTabla() {
         }
     });
 }
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};

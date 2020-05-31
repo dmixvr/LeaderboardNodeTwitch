@@ -3,12 +3,11 @@
     :headers="headers"
     :items="puntuaciones"
     sort-by="Nick"
-    class="elevation-1 md-5"
-    
+    class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar flat >
-        <v-toolbar-title>Puntuaciones Aim Factory</v-toolbar-title>
+        <v-toolbar-title>Puntuaciones Flappy bird</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -76,7 +75,7 @@ import axios from 'axios'
   export default {
     data: () => ({
       dialog: false,
-      IP: "localhost",
+      ip: "localhost",
       headers: [
         {
           text: 'Nick',
@@ -93,12 +92,12 @@ import axios from 'axios'
       editedItem: {
         Nick: '',
         Puntuacion: 0,
-        Minijuego: 1,
+        Minijuego: 3,
       },
       defaultItem: {
         Nick: '',
         Puntuacion: 0,
-        Minijuego: 1,
+        Minijuego: 3,
       },
     }),
 
@@ -121,7 +120,7 @@ import axios from 'axios'
     methods: {
       initialize () {
          
-        axios.get('http://'+ip+':8083/api/leaderboard/1')
+        axios.get('http://'+ip+':8083/api/leaderboard/3')
         .then((response) =>{
             this.puntuaciones = response.data;
             console.log(response.data);
@@ -130,7 +129,7 @@ import axios from 'axios'
           // handle error
           console.log(error);
         })
-        console.log
+
         
       },
 

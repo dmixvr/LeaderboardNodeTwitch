@@ -11,15 +11,23 @@
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title><router-link to="/">dashboard</router-link></v-list-item-title>
+            <v-list-item-title><router-link to="/">Aim Factory</router-link></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
           <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
+            <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>  <router-link to="/about">About</router-link></v-list-item-title>
+            <v-list-item-title>  <router-link to="/BlastJump">Blast Jump</router-link></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+                <v-list-item link>
+          <v-list-item-action>
+            <v-icon>mdi-view-dashboard</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>  <router-link to="/FlappyBird">Flappy bird</router-link></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

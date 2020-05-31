@@ -8,7 +8,7 @@ var cors = require('cors')
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(8081);
+app.listen(8083);
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -23,10 +23,11 @@ app.get('/api/leaderboard/:id', function(req, res) {
 });
 
 app.post('/api/leaderboard/update', function(req, res) {
-    mysql.query('UPDATE puntuaciones SET Nick = ?, Puntuacion = ?, Minijuego = ? WHERE Nick = ?', [req.body.Nick, req.body.Puntuacion, req.body.Minijuego, req.body.Nick], function(error, results, fields) {
-        if (error != undefined) console.log(error)
+    mysql.query('update puntuaciones SET Nick = ?, Puntuacion = ?, Minijuego = ? WHERE ID = ?', [req.body.Nick, req.body.Puntuacion, req.body.Minijuego, req.body.ID], function(error, results, fields) {
+        if (error) console.log(error)
     });
     console.log(req.body); // your JSON
+    console.log("UPDATE " + req.body.ID)
     res.sendStatus(200)
 });
 
@@ -39,7 +40,7 @@ app.post('/api/leaderboard/insert', function(req, res) {
 });
 
 app.post('/api/leaderboard/delete', function(req, res) {
-    mysql.query('delete from puntuaciones where Nick = ?', [req.body.Nick], function(error, results, fields) {
+    mysql.query('delete from puntuaciones where id = ?', [req.body.ID], function(error, results, fields) {
         if (error != undefined) console.log(error)
     });
     console.log(req.body); // your JSON
